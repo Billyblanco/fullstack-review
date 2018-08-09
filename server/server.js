@@ -4,11 +4,15 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , authController = require('./controllers/authController')
     , postsController = require('./controllers/postController')
-
-
 require('dotenv').config()
 
 const app = express()
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: true,
+  resave: false
+}))
 
 massive(process.env.CONNECTION_STRING).then( db => {
   app.set('db', db)
@@ -29,11 +33,7 @@ app.get('/api/logout', (req, res) => {
 app.get('/api.posts', postsController.read)
 app.post('/api/posts', postsController.create)
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: true,
-  resave: false
-}))
+
 
 
 const PORT = process.env.PORT || 4007
