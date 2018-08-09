@@ -1,0 +1,10 @@
+// import axios from 'axios'
+
+module.exports = {
+  read: (req, res) => {
+
+  },
+  create: (req, res) => {
+
+  }
+}
