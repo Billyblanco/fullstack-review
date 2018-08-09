@@ -20,13 +20,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-          <HashRouter>
-            <Switch>
-                <Route exact path='/' component={Landing} />
-                <Route path='/posts' component={PostsContainer}/>
-            </Switch>
-          </HashRouter>
+        <HashRouter>
+            <div>
+              <Header />
+                  <Switch>
+                    <Route exact path='/' component={Landing} />
+                    <Route path='/posts' component={PostsContainer}/>
+                </Switch>
+            </div>
+        </HashRouter>
       
       </div>
     );
