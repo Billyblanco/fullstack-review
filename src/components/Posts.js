@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 
 function Posts (props) {
   return (
@@ -9,7 +9,7 @@ function Posts (props) {
         props.posts.map(post => {
           return (
             <div key={post.id}>
-            <h1>{post.title}</h1>
+            <Link to={`/posts/${post.id}`}><h1>{post.title}</h1></Link>
             <p>Author: {post.author }</p>
             
             </div>
