@@ -30,7 +30,7 @@ app.get('/api/logout', (req, res) => {
   res.sendStatus(200)
 })
 
-app.get('/api.posts', postsController.read)
+app.get('/api/posts', postsController.read)
 app.post('/api/posts', postsController.create)
 
 

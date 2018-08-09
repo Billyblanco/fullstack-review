@@ -1,10 +1,30 @@
-// import axios from 'axios'
+
 
 module.exports = {
-  read: (req, res) => {
-
+  read: async (req, res) => {
+    try {
+      let db = req.app.get('db')
+      let posts = await db.getPosts()
+        res.send(posts)
+    } catch (error) {
+      console.log('ERROR FETCHING POSTS', error)
+        res.status(500).send(error)
+    }
   },
-  create: (req, res) => {
+  create: async (req, res) => {
+    try {
+      let db = await req.app.get('db')
+      let { title, content } = req.body
+      let user_id = req.session.user ? req.session.user.id : 1
 
+      let newPost = { user_id, title, content}
+      let posts = await db.createPost(newPost)
+      let post = posts[0]
+      res.send(post)
+
+  } catch (error) {
+    console.log('ERROR CREATING POSTS', error)
+      res.status(500).send(error)
+    }
   }
 }
