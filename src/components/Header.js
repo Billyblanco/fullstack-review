@@ -1,6 +1,7 @@
 import React  from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { logout } from '../redux/reducers/user'
 
 function Header (props) {
   return (
@@ -12,7 +13,11 @@ function Header (props) {
 
     <div id="navbar" style={styles.navbar}>
       <Link to={'/posts'}>POSTS</Link>
-      {props.user ? <a href="">LOGOUT</a> : <a href="">LOGIN</a>}
+      
+      {props.user ?
+       <Link to='/' onClick={props.logout}>LOGOUT</Link> 
+      :
+       <Link to="/">LOGIN</Link>}
       </div>
     </div>
   )
@@ -24,7 +29,7 @@ let mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps, { logout })(Header)
 
 let styles = {
   header: {
